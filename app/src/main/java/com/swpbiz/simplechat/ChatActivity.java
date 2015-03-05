@@ -124,11 +124,13 @@ public class ChatActivity extends ActionBarActivity {
             @Override
             public void done(List<Message> messages, ParseException e) {
                 if(e == null) {
-                    mMessages.clear();
-                    mMessages.addAll(messages);
-                    // Log.i("DEBUG", messages.toString());
-                    mAdapter.notifyDataSetChanged();
-                    lvChat.invalidate(); // redraw listview
+                    if (messages.size() != mMessages.size()) {
+                        mMessages.clear();
+                        mMessages.addAll(messages);
+                        // Log.i("DEBUG", messages.toString());
+                        mAdapter.notifyDataSetChanged();
+                        lvChat.invalidate(); // redraw listview
+                    }
                 } else {
                     Log.d("message", "Error: " + e.getMessage());
                 }
