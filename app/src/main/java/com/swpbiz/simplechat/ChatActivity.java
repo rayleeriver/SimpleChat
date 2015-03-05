@@ -95,16 +95,6 @@ public class ChatActivity extends ActionBarActivity {
         mAdapter = new ChatListAdapter(ChatActivity.this, sUserId, mMessages);
         lvChat.setAdapter(mAdapter);
 
-        etMessage.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    btSend.callOnClick();
-                    return true;
-                }
-                return false;
-            }
-        });
         etMessage.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
