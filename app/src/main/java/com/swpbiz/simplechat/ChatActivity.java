@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -92,6 +93,19 @@ public class ChatActivity extends ActionBarActivity {
         mAdapter = new ChatListAdapter(ChatActivity.this, sUserId, mMessages);
         lvChat.setAdapter(mAdapter);
 
+        etMessage.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                        btSend.callOnClick();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
         btSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +143,7 @@ public class ChatActivity extends ActionBarActivity {
                         mMessages.addAll(messages);
                         // Log.i("DEBUG", messages.toString());
                         mAdapter.notifyDataSetChanged();
-                        lvChat.invalidate(); // redraw listview
+//                        lvChat.invalidate(); // redraw listview
                     }
                 } else {
                     Log.d("message", "Error: " + e.getMessage());
