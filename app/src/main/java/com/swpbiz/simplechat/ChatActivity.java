@@ -126,7 +126,7 @@ public class ChatActivity extends ActionBarActivity {
                 if(e == null) {
                     mMessages.clear();
                     mMessages.addAll(messages);
-                    Log.i("DEBUG", messages.toString());
+                    // Log.i("DEBUG", messages.toString());
                     mAdapter.notifyDataSetChanged();
                     lvChat.invalidate(); // redraw listview
                 } else {
